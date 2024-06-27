@@ -12,25 +12,13 @@ const app = express();
 // aqpplying middleware
 app.use(express.json());
 
-// Define routes
-app.get('/', (req,res) => {
-    res.json('Welcome home');
-});
-
-app.post('/login', (req, res) => {
-    res.json('login successfully');
-});
-
-app.patch('/wonderful', (req, res) => {
-    res.json('wonderfully and fearfully made');
-});
-
 // use route
 app.use(recipeRouter);
 
 // Listen for incoming requests
-app.listen(3000, () => {
-    console.log('App listening on port 3000')
-})
+const port = 8000;
+app.listen(port, () => {
+    console.log(`App listening on port ${port}`);
+});
 
 // wLgiak5aM3FXgdp4
