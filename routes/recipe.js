@@ -1,15 +1,18 @@
 import { Router } from "express";
-import { localupload } from "../middlewares/uploads.js";
+import { remoteUpload } from "../middlewares/uploads.js";
 import { addRecipes, deleteRecipe, getRecipeByID, getRecipes, updateRecipe } from "../controllers/recipeController.js";
+import { checkUserSession } from "../middlewares/auth.js";
 
 
 // create Router
 const recipeRouter = Router();
 
+// recipeRouter.use(checkUserSession);
+
 // Define routes
 recipeRouter.get('/recipes', getRecipes);
 
-recipeRouter.post('/recipes',localupload.single('image') ,addRecipes);
+recipeRouter.post('/recipes',checkUserSession, remoteUpload.single('image') ,addRecipes);
 
 recipeRouter.patch('/recipes/:id', updateRecipe);
 
